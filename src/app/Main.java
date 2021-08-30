@@ -19,6 +19,24 @@ public class Main
 	
 	public static void main(String[] args)
 	{
+		cargarDatos();
+		//Creación de los threads
+		CyclicBarrier barrera = new CyclicBarrier(numComensales);
+		Mesa mesa = new Mesa();
+		Fregadero fregadero = new Fregadero();
+		Lavaplatos lavaplatos = new Lavaplatos();
+
+		for(int i = 0; i<numComensales; i++)
+		{
+			new Comensal(cantidadPlatos, barrera, mesa, fregadero).start();
+		}
+		lavaplatos.start();
+	}
+
+
+
+	public static void cargarDatos()
+	{
 		Scanner sc = new Scanner(System.in);
 		while (!carga)
 		{
@@ -50,10 +68,5 @@ public class Main
 				e.printStackTrace();
 			}
 		}
-
-		//Creación de los threads
-
-		CyclicBarrier barrera = new CyclicBarrier(numComensales);
 	}
-
 }
