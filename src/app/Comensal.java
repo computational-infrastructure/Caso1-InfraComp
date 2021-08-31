@@ -67,14 +67,14 @@ public class Comensal extends Thread
     {
         /*if(Mesa.numCubiertosT1 == 0 && !tieneCubiertoT1)
         {
-            this.wait();
+            wait();
             cogerCubiertos();
         }
         elseif(Mesa.numCubiertosT2 == 0 && tieneCubiertoT1)
         {
             Mesa.ponerCubiertosT1();
             this.tieneCubiertoT1 = false;
-            this.wait();
+            wait();
             cogerCubiertos();
         }
         elseif(!tieneCubiertoT1)
@@ -83,7 +83,7 @@ public class Comensal extends Thread
         }
         elseif(!tieneCubiertoT2)
         {
-            this.tieneCubiertoT2 = true;
+            this.tieneCubiertoT2 = tru e;
         }*/
     }
 
