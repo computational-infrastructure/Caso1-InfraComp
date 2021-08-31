@@ -87,7 +87,7 @@ public class Comensal extends Thread
         }*/
     }
 
-    public void cambiarCubiertos()
+    public synchronized void cambiarCubiertos()
     {
         /*
         this.tieneCubiertoT1 = false;
