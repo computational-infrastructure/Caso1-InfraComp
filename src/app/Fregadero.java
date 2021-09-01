@@ -5,10 +5,10 @@ public class Fregadero {
 	private static Integer numCubiertosT1;
 	private static Integer numCubiertosT2;
 
-	public Fregadero(Integer tamFregadero, Integer numCubiertosT1, Integer numCubiertosT2) {
+	public Fregadero(Integer tamFregadero) {
 		Fregadero.tamFregadero = tamFregadero;
-		Fregadero.numCubiertosT1 = numCubiertosT1;
-		Fregadero.numCubiertosT2 = numCubiertosT2;
+		Fregadero.numCubiertosT1 = 0;
+		Fregadero.numCubiertosT2 = 0;
 	}
 
 	public static boolean recibirCubiertos() {
