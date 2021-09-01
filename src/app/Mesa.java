@@ -14,7 +14,7 @@ public class Mesa {
 			numCubiertosT1--;
 			return true; // TODO: set Comensal.tieneCubiertoT1 with this return.
 		}
-		
+
 		return false;
 	}
 
@@ -23,7 +23,7 @@ public class Mesa {
 			numCubiertosT2--;
 			return true; // TODO: set Comensal.tieneCubiertoT2 with this return.
 		}
-		
+
 		return false;
 	}
 

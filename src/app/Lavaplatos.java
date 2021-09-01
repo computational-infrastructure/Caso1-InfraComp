@@ -12,7 +12,7 @@ public class Lavaplatos extends Thread {
 
 	public void lavar() {
 		while (true) {
-			
+
 			this.recibiendo = true;
 			while (this.recibiendo) {
 				if (Fregadero.entregarCubiertos()) {
@@ -27,7 +27,7 @@ public class Lavaplatos extends Thread {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			
+
 			Mesa.recogerCubiertos();
 		}
 	}
