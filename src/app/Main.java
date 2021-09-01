@@ -20,8 +20,8 @@ public class Main {
 		cargarDatos();
 		// Creación de los threads
 		CyclicBarrier barrera = new CyclicBarrier(numComensales);
-		Mesa mesa = new Mesa();
-		Fregadero fregadero = new Fregadero();
+		Mesa mesa = new Mesa(numCubiertosT1, numCubiertosT2);
+		Fregadero fregadero = new Fregadero(tamFregadero);
 		Lavaplatos lavaplatos = new Lavaplatos();
 
 		for (int i = 0; i < numComensales; i++) {
