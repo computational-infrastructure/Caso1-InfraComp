@@ -27,7 +27,8 @@ public class Lavaplatos extends Thread {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			// Mesa.recogerCubiertos();
+			
+			Mesa.recogerCubiertos();
 		}
 	}
 }
