@@ -27,8 +27,18 @@ public class Mesa {
 		return false;
 	}
 
-	public static void recogerCubiertos() {
+	public static void recogerCubiertosT1() 
+	{
 		numCubiertosT1++;
+	}
+
+	public static void recogerCubiertosT2()
+	{
 		numCubiertosT2++;
+	}
+
+	public void esperar() throws InterruptedException
+	{
+		wait();
 	}
 }

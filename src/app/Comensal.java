@@ -45,13 +45,29 @@ public class Comensal extends Thread {
 		}
 	}
 
-	public synchronized void cogerCubiertos() {
+	public synchronized void cogerCubiertos() 
+	{
 		/*
-		 * if(Mesa.numCubiertosT1 == 0 && !tieneCubiertoT1) { wait(); cogerCubiertos();
-		 * } elseif(Mesa.numCubiertosT2 == 0 && tieneCubiertoT1) {
-		 * Mesa.ponerCubiertosT1(); this.tieneCubiertoT1 = false; wait();
-		 * cogerCubiertos(); } elseif(!tieneCubiertoT1) { this.tieneCubiertoT1 = true; }
-		 * elseif(!tieneCubiertoT2) { this.tieneCubiertoT2 = tru e; }
+		if(Mesa.numCubiertosT1 == 0 && !tieneCubiertoT1) 
+		{ 
+			Mesa.esperar(); 
+			cogerCubiertos();
+		} 
+		elseif(Mesa.numCubiertosT2 == 0 && tieneCubiertoT1) 
+		{
+		  	Mesa.recogerCubiertosT1(); 
+		  	this.tieneCubiertoT1 = false; 
+		  	Mesa.esperar();
+		  	cogerCubiertos(); 
+		} 
+		elseif(!tieneCubiertoT1) 
+		{ 
+			this.tieneCubiertoT1 = true; 
+		}
+		elseif(!tieneCubiertoT2) 
+		{ 
+			this.tieneCubiertoT2 = true; 
+		}
 		 */
 	}
 
@@ -60,10 +76,14 @@ public class Comensal extends Thread {
 		this.tieneCubiertoT2 = false;
 
 		this.cambiando = true;
-		while (this.cambiando) {
-			if (Fregadero.recibirCubiertos()) {
+		while (this.cambiando) 
+		{
+			if (Fregadero.recibirCubiertos()) 
+			{
 				Comensal.yield();
-			} else {
+			} 
+			else 
+			{
 				this.cambiando = false;
 			}
 		}

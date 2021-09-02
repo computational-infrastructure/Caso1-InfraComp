@@ -28,7 +28,8 @@ public class Lavaplatos extends Thread {
 				e.printStackTrace();
 			}
 
-			Mesa.recogerCubiertos();
+			Mesa.recogerCubiertosT1();
+            Mesa.recogerCubiertosT2();
 		}
 	}
 }
