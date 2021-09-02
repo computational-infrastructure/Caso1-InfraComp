@@ -37,6 +37,12 @@ public class Mesa {
 		numCubiertosT2++;
 	}
 
+	public static void recogerCubiertosLavaplatos()
+	{
+		numCubiertosT1++;
+		numCubiertosT2++;
+	}
+
 	public void esperar() throws InterruptedException
 	{
 		wait();
