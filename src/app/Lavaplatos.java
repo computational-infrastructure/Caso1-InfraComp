@@ -2,11 +2,18 @@ package app;
 
 import java.util.Random;
 
-public class Lavaplatos extends Thread {
+public class Lavaplatos extends Thread 
+{
 
 	public Boolean recibiendo;
+    private Mesa mesa;
 
-	public void run() {
+    public Lavaplatos(Mesa mesa)
+    {
+        this.mesa = mesa;
+    }
+	public void run() 
+    {
 		lavar();
 	}
 
@@ -28,7 +35,7 @@ public class Lavaplatos extends Thread {
 				e.printStackTrace();
 			}
 
-			Mesa.recogerCubiertosLavaplatos();
+			mesa.recogerCubiertosLavaplatos();
 		}
 	}
 }

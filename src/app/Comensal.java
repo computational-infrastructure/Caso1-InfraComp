@@ -9,13 +9,15 @@ public class Comensal extends Thread {
 	private boolean tieneCubiertoT2;
 	private int platosPorComer;
 	private CyclicBarrier barrera;
+	private Mesa mesa;
 
 	public Boolean cambiando;
 
-	public Comensal(int platos, CyclicBarrier barrera) {
+	public Comensal(int platos, CyclicBarrier barrera, Mesa mesa) 
+	{
 		this.platosPorComer = platos;
 		this.barrera = barrera;
-
+		this.mesa = mesa;
 	}
 
 	public void run() {
@@ -23,7 +25,8 @@ public class Comensal extends Thread {
 	}
 
 	public void comer() {
-		while (platosPorComer > 0) {
+		while (platosPorComer > 0) 
+		{
 			cogerCubiertos();
 			int cantidad = Main.cantidadPlatos / 2;
 			if (cantidad == platosPorComer) {
@@ -47,28 +50,26 @@ public class Comensal extends Thread {
 
 	public synchronized void cogerCubiertos() 
 	{
-		/*
 		if(Mesa.numCubiertosT1 == 0 && !tieneCubiertoT1) 
 		{ 
-			Mesa.esperar(); 
+			mesa.esperar(); 
 			cogerCubiertos();
 		} 
-		elseif(Mesa.numCubiertosT2 == 0 && tieneCubiertoT1) 
+		else if(Mesa.numCubiertosT2 == 0 && tieneCubiertoT1) 
 		{
-		  	Mesa.recogerCubiertosT1(); 
+		  	mesa.recogerCubiertosT1(); 
 		  	this.tieneCubiertoT1 = false; 
-		  	Mesa.esperar();
+		  	mesa.esperar();
 		  	cogerCubiertos(); 
 		} 
-		elseif(!tieneCubiertoT1) 
+		else if(!tieneCubiertoT1) 
 		{ 
 			this.tieneCubiertoT1 = true; 
 		}
-		elseif(!tieneCubiertoT2) 
+		else if(!tieneCubiertoT2) 
 		{ 
 			this.tieneCubiertoT2 = true; 
 		}
-		 */
 	}
 
 	public synchronized void cambiarCubiertos() {

@@ -22,10 +22,10 @@ public class Main {
 		CyclicBarrier barrera = new CyclicBarrier(numComensales);
 		Mesa mesa = new Mesa(numCubiertosT1, numCubiertosT2);
 		Fregadero fregadero = new Fregadero(tamFregadero);
-		Lavaplatos lavaplatos = new Lavaplatos();
+		Lavaplatos lavaplatos = new Lavaplatos(mesa);
 
 		for (int i = 0; i < numComensales; i++) {
-			new Comensal(cantidadPlatos, barrera).start();
+			new Comensal(cantidadPlatos, barrera, mesa).start();
 		}
 		lavaplatos.start();
 	}

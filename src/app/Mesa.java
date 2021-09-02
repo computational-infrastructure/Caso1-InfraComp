@@ -1,8 +1,9 @@
 package app;
 
-public class Mesa {
-	private static Integer numCubiertosT1;
-	private static Integer numCubiertosT2;
+public class Mesa 
+{
+	public static Integer numCubiertosT1;
+	public static Integer numCubiertosT2;
 
 	public Mesa(Integer numCubiertosT1, Integer numCubiertosT2) {
 		Mesa.numCubiertosT1 = numCubiertosT1;
@@ -27,24 +28,35 @@ public class Mesa {
 		return false;
 	}
 
-	public static void recogerCubiertosT1() 
+	public void recogerCubiertosT1() 
 	{
 		numCubiertosT1++;
+		notifyAll();
 	}
 
-	public static void recogerCubiertosT2()
+	public void recogerCubiertosT2()
 	{
 		numCubiertosT2++;
+		notifyAll();
 	}
 
-	public static void recogerCubiertosLavaplatos()
+	public void recogerCubiertosLavaplatos()
 	{
 		numCubiertosT1++;
 		numCubiertosT2++;
+		notifyAll();
 	}
 
-	public void esperar() throws InterruptedException
+	public void esperar()
 	{
-		wait();
+		try 
+		{
+			wait();
+		} 
+		catch (InterruptedException e) 
+		{
+			e.printStackTrace();
+		}
 	}
+
 }
