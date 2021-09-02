@@ -9,15 +9,13 @@ public class Comensal extends Thread {
 	private boolean tieneCubiertoT2;
 	private int platosPorComer;
 	private CyclicBarrier barrera;
-	private Mesa mesa;
-	private Fregadero fregadero;
+
 	public Boolean cambiando;
 
-	public Comensal(int platos, CyclicBarrier barrera, Mesa mesa, Fregadero fregadero) {
+	public Comensal(int platos, CyclicBarrier barrera) {
 		this.platosPorComer = platos;
 		this.barrera = barrera;
-		this.mesa = mesa;
-		this.fregadero = fregadero;
+
 	}
 
 	public void run() {

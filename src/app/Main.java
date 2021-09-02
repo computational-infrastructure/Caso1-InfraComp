@@ -25,7 +25,7 @@ public class Main {
 		Lavaplatos lavaplatos = new Lavaplatos();
 
 		for (int i = 0; i < numComensales; i++) {
-			new Comensal(cantidadPlatos, barrera, mesa, fregadero).start();
+			new Comensal(cantidadPlatos, barrera).start();
 		}
 		lavaplatos.start();
 	}
