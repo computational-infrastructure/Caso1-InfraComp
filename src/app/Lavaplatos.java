@@ -17,21 +17,30 @@ public class Lavaplatos extends Thread
 		lavar();
 	}
 
-	public void lavar() {
-		while (true) {
-
+	public void lavar() 
+	{
+		while (true) 
+		{
 			this.recibiendo = true;
-			while (this.recibiendo) {
-				if (Fregadero.entregarCubiertos()) {
+			while (this.recibiendo) 
+			{
+				if (Fregadero.entregarCubiertos()) 
+				{
 					Lavaplatos.yield();
-				} else {
+				} 
+				else 
+				{
 					this.recibiendo = false;
+					Main.crearLogs("Lavaplatos recogió cubiertos del fregadero.");
 				}
 			}
 
-			try {
-				Thread.sleep(new Random().nextInt(3));
-			} catch (InterruptedException e) {
+			try 
+			{
+				Main.crearLogs("Lavando Cubiertos");
+				Thread.sleep(new Random().nextInt(3)*1000);
+			} catch (InterruptedException e) 
+			{
 				e.printStackTrace();
 			}
 

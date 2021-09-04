@@ -6,8 +6,14 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.io.File;
+import java.io.PrintWriter;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.time.LocalDateTime;
 
-public class Main {
+public class Main 
+{
 	static String pathToProperties = "config.properties";
 	static int cantidadPlatos = 0;
 	static int numComensales = 0;
@@ -16,18 +22,38 @@ public class Main {
 	static int tamFregadero = 0;
 	static boolean carga = false;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) 
+	{
 		cargarDatos();
 		// Creación de los threads
+		Main.crearLogs("___________________________________________________________________");
+		Main.crearLogs("Ejecución de hora: " + LocalDateTime.now());
 		CyclicBarrier barrera = new CyclicBarrier(numComensales);
+		CyclicBarrier barrreraFinal = new CyclicBarrier(numComensales);
 		Mesa mesa = new Mesa(numCubiertosT1, numCubiertosT2);
-		Fregadero fregadero = new Fregadero(tamFregadero);
+		new Fregadero(tamFregadero);
 		Lavaplatos lavaplatos = new Lavaplatos(mesa);
 
 		for (int i = 0; i < numComensales; i++) {
-			new Comensal(cantidadPlatos, barrera, mesa).start();
+			new Comensal(cantidadPlatos, barrera, mesa, i, barrreraFinal).start();
 		}
 		lavaplatos.start();
+	}
+
+	public static void crearLogs(String mensaje)
+	{
+		System.out.println(mensaje); 
+		File logs = new File("./logs/logs.txt");
+		try 
+		{
+			PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(logs, true)), true);
+			pw.println(mensaje);
+			pw.close();
+		}
+		catch (Exception ex)
+		{
+			ex.printStackTrace();
+		}
 	}
 
 	public static void cargarDatos() {

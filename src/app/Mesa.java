@@ -10,19 +10,21 @@ public class Mesa
 		Mesa.numCubiertosT2 = numCubiertosT2;
 	}
 
-	public static synchronized boolean ponerCubiertosT1() {
+	public synchronized boolean ponerCubiertosT1() {
 		if (numCubiertosT1 > 0) {
 			numCubiertosT1--;
-			return true; // TODO: set Comensal.tieneCubiertoT1 with this return.
+			return true;
 		}
 
 		return false;
 	}
 
-	public static synchronized boolean ponerCubiertosT2() {
-		if (numCubiertosT2 > 0) {
+	public synchronized boolean ponerCubiertosT2() 
+	{
+		if (numCubiertosT2 > 0) 
+		{
 			numCubiertosT2--;
-			return true; // TODO: set Comensal.tieneCubiertoT2 with this return.
+			return true; 
 		}
 
 		return false;
@@ -31,27 +33,43 @@ public class Mesa
 	public void recogerCubiertosT1() 
 	{
 		numCubiertosT1++;
-		notifyAll();
+		synchronized (this)
+		{
+			notifyAll();
+			Main.crearLogs("Se dejó un cubierto tipo T1 en la mesa. Cantidad disponible T1: " + numCubiertosT1 + " | Cantidad disponible T2: "+numCubiertosT2);
+		}
 	}
 
 	public void recogerCubiertosT2()
 	{
 		numCubiertosT2++;
-		notifyAll();
+		synchronized (this)
+		{
+			notifyAll();
+		}
+		Main.crearLogs("Se dejó un cubierto tipo T2 en la mesa. Cantidad disponible T1: " + numCubiertosT1 + " | Cantidad disponible T2: " + numCubiertosT2);
 	}
 
 	public void recogerCubiertosLavaplatos()
 	{
 		numCubiertosT1++;
 		numCubiertosT2++;
-		notifyAll();
+		synchronized (this)
+		{
+			notifyAll();
+			Main.crearLogs("Cubiertos dejados en la mesa");
+			Main.crearLogs("Cantidad de cubiertos en la mesa: T1 = " + numCubiertosT1 + " | T2 = " +numCubiertosT2);
+		}
 	}
 
 	public void esperar()
 	{
 		try 
 		{
-			wait();
+			synchronized(this)
+			{
+				wait();
+			}
 		} 
 		catch (InterruptedException e) 
 		{
