@@ -1,16 +1,16 @@
 package app;
 
-import java.util.Properties;
-import java.util.concurrent.CyclicBarrier;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-import java.io.File;
-import java.io.PrintWriter;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
+import java.io.InputStream;
+import java.io.PrintWriter;
 import java.time.LocalDateTime;
+import java.util.Properties;
+import java.util.Scanner;
+import java.util.concurrent.CyclicBarrier;
 
 public class Main {
 	static String pathToProperties = "config.properties";

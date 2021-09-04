@@ -1,8 +1,8 @@
 package app;
 
+import java.util.Random;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
-import java.util.Random;
 
 public class Comensal extends Thread {
 	private int id;
@@ -24,6 +24,7 @@ public class Comensal extends Thread {
 		this.barreraFinal = barreraFinal;
 	}
 
+	@Override
 	public void run() {
 		comer();
 	}
@@ -96,13 +97,10 @@ public class Comensal extends Thread {
 
 		this.cambiando = true;
 		while (this.cambiando) {
-			if (Fregadero.recibirCubiertos()) 
-			{
+			if (Fregadero.recibirCubiertos()) {
 				Main.crearLogs("Comensal " + id + " está esperando a que se desocupe el fregadero");
-				Comensal.yield();
-			} 
-			else 
-			{
+				Thread.yield();
+			} else {
 				this.cambiando = false;
 				Main.crearLogs("Comensal " + id + " cambió de cubiertos");
 			}

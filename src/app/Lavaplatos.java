@@ -11,6 +11,7 @@ public class Lavaplatos extends Thread {
 		this.mesa = mesa;
 	}
 
+	@Override
 	public void run() {
 		lavar();
 	}
@@ -20,7 +21,7 @@ public class Lavaplatos extends Thread {
 			this.recibiendo = true;
 			while (this.recibiendo) {
 				if (Fregadero.entregarCubiertos()) {
-					Lavaplatos.yield();
+					Thread.yield();
 				} else {
 					this.recibiendo = false;
 					Main.crearLogs("Lavaplatos recogió cubiertos del fregadero.");
