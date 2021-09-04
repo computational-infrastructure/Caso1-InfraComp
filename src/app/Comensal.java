@@ -96,10 +96,13 @@ public class Comensal extends Thread {
 
 		this.cambiando = true;
 		while (this.cambiando) {
-			if (Fregadero.recibirCubiertos()) {
+			if (Fregadero.recibirCubiertos()) 
+			{
 				Main.crearLogs("Comensal " + id + " está esperando a que se desocupe el fregadero");
 				Comensal.yield();
-			} else {
+			} 
+			else 
+			{
 				this.cambiando = false;
 				Main.crearLogs("Comensal " + id + " cambió de cubiertos");
 			}
