@@ -32,8 +32,6 @@ public class Comensal extends Thread {
 	public void comer() {
 		Main.crearLogs("Comensal " + id + " empezó a comer");
 		while (platosPorComer > 0) {
-			cogerCubiertos();
-			Main.crearLogs("Comensal " + id + " empieza a comer. Platos por comer: " + platosPorComer);
 			if (mitadDePlatos == platosPorComer) {
 				try {
 					Main.crearLogs("Comensal " + id + " llegó a la mitad de sus platos.");
@@ -44,6 +42,8 @@ public class Comensal extends Thread {
 					e.printStackTrace();
 				}
 			}
+			cogerCubiertos();
+			Main.crearLogs("Comensal " + id + " empieza a comer. Platos por comer: " + platosPorComer);
 			try {
 				Thread.sleep((new Random().nextInt(5 - 3) + 3) * 1000);
 				platosPorComer--;
@@ -64,17 +64,17 @@ public class Comensal extends Thread {
 	}
 
 	public synchronized void cogerCubiertos() {
-		if (!(tieneCubiertoT1 && tieneCubiertoT2)) {
-			Main.crearLogs("Comensal " + id + " intenta coger un cubierto T1.");
-			tieneCubiertoT1 = mesa.ponerCubiertosT1();
+		while (!(tieneCubiertoT1 && tieneCubiertoT2)) {
 			if (!tieneCubiertoT1) {
-				Main.crearLogs("Comensal " + id + " no pudo coger un cubierto T1.");
-				mesa.esperar();
-				cogerCubiertos();
-				if ((tieneCubiertoT1 && tieneCubiertoT2)) {
-					return;
+				Main.crearLogs("Comensal " + id + " intenta coger un cubierto T1.");
+				tieneCubiertoT1 = mesa.ponerCubiertosT1();
+				if (!tieneCubiertoT1) {
+					Main.crearLogs("Comensal " + id + " no pudo coger un cubierto T1.");
+					mesa.esperar();
+					continue;
 				}
 			}
+
 			Main.crearLogs("Comensal " + id + " intenta coger un cubierto T2.");
 			tieneCubiertoT2 = mesa.ponerCubiertosT2();
 			if (!tieneCubiertoT2) {
@@ -83,10 +83,7 @@ public class Comensal extends Thread {
 				Main.crearLogs("Comensal " + id + " devolvió un cubierto T1.");
 				this.tieneCubiertoT1 = false;
 				mesa.esperar();
-				cogerCubiertos();
-				if ((tieneCubiertoT1 && tieneCubiertoT2)) {
-					return;
-				}
+				continue;
 			}
 		}
 	}
