@@ -12,8 +12,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.time.LocalDateTime;
 
-public class Main 
-{
+public class Main {
 	static String pathToProperties = "config.properties";
 	static int cantidadPlatos = 0;
 	static int numComensales = 0;
@@ -22,8 +21,7 @@ public class Main
 	static int tamFregadero = 0;
 	static boolean carga = false;
 
-	public static void main(String[] args) 
-	{
+	public static void main(String[] args) {
 		cargarDatos();
 		// Creación de los threads
 		Main.crearLogs("___________________________________________________________________");
@@ -40,18 +38,14 @@ public class Main
 		lavaplatos.start();
 	}
 
-	public static void crearLogs(String mensaje)
-	{
-		System.out.println(mensaje); 
+	public static void crearLogs(String mensaje) {
+		System.out.println(mensaje);
 		File logs = new File("./logs/logs.txt");
-		try 
-		{
+		try {
 			PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(logs, true)), true);
 			pw.println(mensaje);
 			pw.close();
-		}
-		catch (Exception ex)
-		{
+		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 	}

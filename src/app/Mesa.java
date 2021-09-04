@@ -1,7 +1,6 @@
 package app;
 
-public class Mesa 
-{
+public class Mesa {
 	public static Integer numCubiertosT1;
 	public static Integer numCubiertosT2;
 
@@ -19,60 +18,49 @@ public class Mesa
 		return false;
 	}
 
-	public synchronized boolean ponerCubiertosT2() 
-	{
-		if (numCubiertosT2 > 0) 
-		{
+	public synchronized boolean ponerCubiertosT2() {
+		if (numCubiertosT2 > 0) {
 			numCubiertosT2--;
-			return true; 
+			return true;
 		}
 
 		return false;
 	}
 
-	public void recogerCubiertosT1() 
-	{
+	public void recogerCubiertosT1() {
 		numCubiertosT1++;
-		synchronized (this)
-		{
+		synchronized (this) {
 			notifyAll();
-			Main.crearLogs("Se dejó un cubierto tipo T1 en la mesa. Cantidad disponible T1: " + numCubiertosT1 + " | Cantidad disponible T2: "+numCubiertosT2);
+			Main.crearLogs("Se dejó un cubierto tipo T1 en la mesa. Cantidad disponible T1: " + numCubiertosT1
+					+ " | Cantidad disponible T2: " + numCubiertosT2);
 		}
 	}
 
-	public void recogerCubiertosT2()
-	{
+	public void recogerCubiertosT2() {
 		numCubiertosT2++;
-		synchronized (this)
-		{
+		synchronized (this) {
 			notifyAll();
 		}
-		Main.crearLogs("Se dejó un cubierto tipo T2 en la mesa. Cantidad disponible T1: " + numCubiertosT1 + " | Cantidad disponible T2: " + numCubiertosT2);
+		Main.crearLogs("Se dejó un cubierto tipo T2 en la mesa. Cantidad disponible T1: " + numCubiertosT1
+				+ " | Cantidad disponible T2: " + numCubiertosT2);
 	}
 
-	public void recogerCubiertosLavaplatos()
-	{
+	public void recogerCubiertosLavaplatos() {
 		numCubiertosT1++;
 		numCubiertosT2++;
-		synchronized (this)
-		{
+		synchronized (this) {
 			notifyAll();
 			Main.crearLogs("Cubiertos dejados en la mesa");
-			Main.crearLogs("Cantidad de cubiertos en la mesa: T1 = " + numCubiertosT1 + " | T2 = " +numCubiertosT2);
+			Main.crearLogs("Cantidad de cubiertos en la mesa: T1 = " + numCubiertosT1 + " | T2 = " + numCubiertosT2);
 		}
 	}
 
-	public void esperar()
-	{
-		try 
-		{
-			synchronized(this)
-			{
+	public void esperar() {
+		try {
+			synchronized (this) {
 				wait();
 			}
-		} 
-		catch (InterruptedException e) 
-		{
+		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}

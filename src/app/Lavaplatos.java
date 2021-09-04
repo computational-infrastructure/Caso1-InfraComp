@@ -2,45 +2,35 @@ package app;
 
 import java.util.Random;
 
-public class Lavaplatos extends Thread 
-{
+public class Lavaplatos extends Thread {
 
 	public Boolean recibiendo;
-    private Mesa mesa;
+	private Mesa mesa;
 
-    public Lavaplatos(Mesa mesa)
-    {
-        this.mesa = mesa;
-    }
-	public void run() 
-    {
+	public Lavaplatos(Mesa mesa) {
+		this.mesa = mesa;
+	}
+
+	public void run() {
 		lavar();
 	}
 
-	public void lavar() 
-	{
-		while (true) 
-		{
+	public void lavar() {
+		while (true) {
 			this.recibiendo = true;
-			while (this.recibiendo) 
-			{
-				if (Fregadero.entregarCubiertos()) 
-				{
+			while (this.recibiendo) {
+				if (Fregadero.entregarCubiertos()) {
 					Lavaplatos.yield();
-				} 
-				else 
-				{
+				} else {
 					this.recibiendo = false;
 					Main.crearLogs("Lavaplatos recogió cubiertos del fregadero.");
 				}
 			}
 
-			try 
-			{
+			try {
 				Main.crearLogs("Lavando Cubiertos");
-				Thread.sleep(new Random().nextInt(3)*1000);
-			} catch (InterruptedException e) 
-			{
+				Thread.sleep(new Random().nextInt(3) * 1000);
+			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 
